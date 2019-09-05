@@ -41,7 +41,7 @@ const DragonDetail = ({isOpen, closeModal, dragon}) => {
                 <div className={classes.paper}>
                     <Typography variant="h1" component="h2">{dragon.name}</Typography>
                     <Typography variant="h5" component="h5">{dragon.type}</Typography>
-                    <Typography variant="subtitle1" component="subtitle1">{dragon.creationDate}</Typography>                    
+                    <Typography variant="subtitle1" component="subtitle1">{dragon.createdAt}</Typography>                    
                 </div>
             </Fade>
         </Modal>
