@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import DragonList from "../DragonList/DragonList";
 import DragonDetail from "../DragonDetail/DragonDetail";
 import { Typography } from '@material-ui/core/';
@@ -11,13 +11,24 @@ const Dragons = () => {
 
   useEffect(() => {
     updateDragons();
-  },[]);
+  }, []);
 
   const updateDragons = () => {
     DragonClient.getDragons()
-      .then( resp => resp.json())
-      .then( dragons => setDragons(dragons));
-      //ToDo: catch and show user message.
+      .then(resp => resp.json())
+      .then(dragons => setDragons(getOrderedList(dragons)));
+    //ToDo: catch and show user message.
+  }
+
+  const getOrderedList = (dragons) => {
+    return dragons.sort(function (a, b) {
+      let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+      if (nameA < nameB)
+        return -1;
+      if (nameA > nameB)
+        return 1;
+      return 0;
+    });
   }
 
   const handleIsDetailOpen = (isOpen) => {
@@ -30,7 +41,7 @@ const Dragons = () => {
   }
 
   const onDeleteDragon = (id) => {
-    DragonClient.deleteDragon(id).then(resp=>{
+    DragonClient.deleteDragon(id).then(resp => {
       updateDragons();
     });
   }
