@@ -7,8 +7,8 @@ const AppRouter = () => {
   return (
     <Router>
       <div>
-        <Route path="/" exact component={<Login></Login>} />
-        <Route path="/dragons/" component={<Dragons></Dragons>} />
+        <Route path="/" exact component={() => <Login></Login>} />
+        <Route path="/dragons/" component={() => <Dragons></Dragons>} />
       </div>
     </Router>
   );
