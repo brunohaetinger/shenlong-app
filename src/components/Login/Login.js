@@ -1,16 +1,21 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import { TextField, Button } from '@material-ui/core/';
+import { Route } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    flexDirection: 'column'
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 200,
+  },
+  button: {
+    margin: theme.spacing(1),
   },
 }));
 
@@ -18,7 +23,7 @@ const Login = () => {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     username: '',
-    password: '',   
+    password: '',
   });
 
   const handleChange = name => event => {
@@ -44,6 +49,14 @@ const Login = () => {
           autoComplete="current-password"
           margin="normal"
         />
+
+
+        <Route render={({ history }) => (
+          <Button variant="contained" color="primary" className={classes.button} onClick={() => { history.push('/dragons') }}>
+            Login
+          </Button>
+
+        )} />
       </form>
     </div>
   );
