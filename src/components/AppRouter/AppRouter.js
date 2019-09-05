@@ -1,11 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Login from '../Login/Login';
+import Dragons from '../Dragons/Dragons';
 
 const AppRouter = () => {
   return (
     <Router>
       <div>
-        Router
+        <Route path="/" exact component={<Login></Login>} />
+        <Route path="/dragons/" component={<Dragons></Dragons>} />
       </div>
     </Router>
   );

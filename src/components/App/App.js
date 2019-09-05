@@ -2,11 +2,11 @@ import React from 'react';
 import './App.css';
 import AppRouter from '../AppRouter/AppRouter';
 
-const App =() => {
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <AppRouter/>
+        <AppRouter></AppRouter>
       </header>
     </div>
   );
