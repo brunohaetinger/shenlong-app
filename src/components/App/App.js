@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import AppRouter from '../AppRouter/AppRouter';
+import 'typeface-roboto';
 
 const App = () => {
   return (
