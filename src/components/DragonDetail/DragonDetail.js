@@ -25,6 +25,7 @@ const DragonDetail = ({isOpen, closeModal, dragon}) => {
     };
 
     return (
+        dragon ?
         <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
@@ -41,10 +42,10 @@ const DragonDetail = ({isOpen, closeModal, dragon}) => {
                 <div className={classes.paper}>
                     <Typography variant="h1" component="h2">{dragon.name}</Typography>
                     <Typography variant="h5" component="h5">{dragon.type}</Typography>
-                    <Typography variant="subtitle1" component="subtitle1">{dragon.createdAt}</Typography>                    
+                    <Typography variant="subtitle1" component="h6">{dragon.createdAt}</Typography>                    
                 </div>
             </Fade>
-        </Modal>
+        </Modal> : ""
     )
 }
 
