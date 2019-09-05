@@ -1,17 +1,18 @@
-const DragonClient = () => {
-    const getDragons = () => {
+const DragonClient = {
+    getDragons: () => {
+        console.log('GET DRAGONS', process.env.REACT_APP_DRAGON_API_V1);
         return fetch(process.env.REACT_APP_DRAGON_API_V1, {
             method: 'GET',
         });
-    }
+    },
 
-    const getDragon = (id) => {
+    getDragon: (id) => {
         return fetch(`${process.env.REACT_APP_DRAGON_API_V1}/${id}`, {
             method: 'GET',
         });
-    }
+    },
 
-    const createDragon = (dragon) => {
+    createDragon: (dragon) => {
         return fetch(`${process.env.REACT_APP_DRAGON_API_V1}`, {
             method: 'POST',
             headers: {
@@ -20,9 +21,9 @@ const DragonClient = () => {
             },
             body: JSON.stringify(dragon),
         });
-    }
+    },
 
-    const updateDragon = (id, dragon) => {
+    updateDragon: (id, dragon) => {
         return fetch(`${process.env.REACT_APP_DRAGON_API_V1}/${id}`, {
             method: 'PUT',
             headers: {
@@ -31,13 +32,13 @@ const DragonClient = () => {
             },
             body: JSON.stringify(dragon),
         });
-    }
+    },
 
-    const deleteDragon = (id) => {
+    deleteDragon: (id) => {
         return fetch(`${process.env.REACT_APP_DRAGON_API_V1}/${id}`, {
             method: 'DELETE',
         });
-    }
+    },
 }
 
-export default { DragonClient };
+export default DragonClient;
