@@ -12,7 +12,7 @@ const Dragons = () => {
   useEffect(() => {
     updateDragons();
   },[]);
-      
+
   const updateDragons = () => {
     DragonClient.getDragons()
       .then( resp => resp.json())
@@ -29,10 +29,16 @@ const Dragons = () => {
     handleIsDetailOpen(true);
   }
 
+  const onDeleteDragon = (id) => {
+    DragonClient.deleteDragon(id).then(resp=>{
+      updateDragons();
+    });
+  }
+
   return (
     <div>
       <Typography variant="h1" component="h2">Dragons</Typography>
-      <DragonList onSelectDragon={openDetail} dragons={dragons}></DragonList>
+      <DragonList onSelectDragon={openDetail} dragons={dragons} onDeleteDragon={onDeleteDragon}></DragonList>
       <DragonDetail isOpen={isDetailOpen} dragon={selectedDragon} closeModal={() => { handleIsDetailOpen(false) }}></DragonDetail>
     </div>
   );

@@ -1,17 +1,18 @@
 import React from 'react';
 import { ListItemText, ListItem } from '@material-ui/core/';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-
-const DragonListItem = ({index, style, data, onClick}) => {
+const DragonListItem = ({ index, style, data, onSelectDragon, onDeleteDragon }) => {
     const dragon = data[index];
 
     const handleItemClick = () => {
-        onClick(dragon);
+        onSelectDragon(dragon);
     }
 
     return (
-        <ListItem button style={style} key={index} onClick={handleItemClick}>
-            <ListItemText primary={dragon.name} />
+        <ListItem button style={style} key={index} >
+            <ListItemText primary={dragon.name} onClick={handleItemClick}/>
+            <DeleteForeverIcon onClick={() => { onDeleteDragon(dragon.id) }} />
         </ListItem>
     );
 }
