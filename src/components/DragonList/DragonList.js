@@ -17,13 +17,13 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const DragonList = ({dragons, onSelectDragon, onDeleteDragon}) => {
+const DragonList = ({dragons, onSelectDragon, onDeleteDragon, onEditDragon}) => {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
             <List itemData={dragons} height={400} width={360} itemSize={46} itemCount={dragons.length}>
-                {({index, style, data}) => <DragonListItem index={index} style={style} data={data} onSelectDragon={onSelectDragon} onDeleteDragon={onDeleteDragon}></DragonListItem>}
+                {({index, style, data}) => <DragonListItem index={index} style={style} data={data} onSelectDragon={onSelectDragon} onDeleteDragon={onDeleteDragon} onEditDragon={onEditDragon}></DragonListItem>}
             </List>
             <Fab color="primary" aria-label="add" className={classes.fab}>
                 <AddIcon />
