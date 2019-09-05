@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal, Backdrop, Fade } from '@material-ui/core/';
+import { Typography } from '@material-ui/core/';
 
 const useStyles = makeStyles(theme => ({
     modal: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const DragonDetail = ({isOpen, closeModal}) => {
+const DragonDetail = ({isOpen, closeModal, dragon}) => {
     const classes = useStyles();
 
     const handleClose = () => {
@@ -38,8 +39,9 @@ const DragonDetail = ({isOpen, closeModal}) => {
         >
             <Fade in={isOpen}>
                 <div className={classes.paper}>
-                    <h2 id="transition-modal-title">Transition modal</h2>
-                    <p id="transition-modal-description">react-transiton-group animates me.</p>
+                    <Typography variant="h1" component="h2">{dragon.name}</Typography>
+                    <Typography variant="h5" component="h5">{dragon.type}</Typography>
+                    <Typography variant="subtitle1" component="subtitle1">{dragon.creationDate}</Typography>                    
                 </div>
             </Fade>
         </Modal>
