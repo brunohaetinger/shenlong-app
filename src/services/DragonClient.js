@@ -1,6 +1,5 @@
 const DragonClient = {
     getDragons: () => {
-        console.log('GET DRAGONS', process.env.REACT_APP_DRAGON_API_V1);
         return fetch(process.env.REACT_APP_DRAGON_API_V1, {
             method: 'GET',
         });
