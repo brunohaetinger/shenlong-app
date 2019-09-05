@@ -10,11 +10,15 @@ const Dragons = () => {
   const [dragons, setDragons] = useState([]);
 
   useEffect(() => {
-    DragonClient.getDragons()
-      .then( resp => {console.log("TCL: Dragons -> resp", resp); return resp.json()})
-      
-      .then( dragons => setDragons(dragons));
+    updateDragons();
   },[]);
+      
+  const updateDragons = () => {
+    DragonClient.getDragons()
+      .then( resp => resp.json())
+      .then( dragons => setDragons(dragons));
+      //ToDo: catch and show user message.
+  }
 
   const handleIsDetailOpen = (isOpen) => {
     setDetailOpen(isOpen);
