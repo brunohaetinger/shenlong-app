@@ -1,8 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { ListItemText, ListItem } from '@material-ui/core/';
-import { FixedSizeList } from 'react-window';
+import { Fab } from '@material-ui/core/';
+import { FixedSizeList as List} from 'react-window';
+import AddIcon from '@material-ui/icons/Add';
+import DragonListItem from './DragonListItem';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -11,31 +12,22 @@ const useStyles = makeStyles(theme => ({
         maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
     },
+    fab: {
+        margin: theme.spacing(1),
+    },
 }));
 
-function Row(props) {
-    const { index, style } = props;
-
-    return (
-        <ListItem button style={style} key={index}>
-            <ListItemText primary={`Item ${index + 1}`} />
-        </ListItem>
-    );
-}
-
-Row.propTypes = {
-    index: PropTypes.number.isRequired,
-    style: PropTypes.object.isRequired,
-};
-
-const DragonList = () => {
+const DragonList = ({dragons}) => {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <FixedSizeList height={400} width={360} itemSize={46} itemCount={200}>
-                {Row}
-            </FixedSizeList>
+            <List itemData={dragons} height={400} width={360} itemSize={46} itemCount={dragons.length}>
+                {DragonListItem}
+            </List>
+            <Fab color="primary" aria-label="add" className={classes.fab}>
+                <AddIcon />
+            </Fab>
         </div>
     );
 };
