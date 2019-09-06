@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core/';
 import { Route } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import logo from '../../assets/dragon-ball.png';
 const Database = require('../../dbMock/db.json');
 
@@ -22,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Login = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const classes = useStyles();
   const [values, setValues] = React.useState({
     username: '',
@@ -36,7 +38,7 @@ const Login = () => {
     if(isValidUser()){
       routeHistory.push('/dragons'); 
     } else{
-      //ToDo: Usuario e senha não encontrados.
+      enqueueSnackbar(`Sorry, user not found`, {variant: 'error'});
     }
   }
 
