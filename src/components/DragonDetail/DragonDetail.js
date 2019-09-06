@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Modal, Backdrop, Fade } from '@material-ui/core/';
-import { Typography } from '@material-ui/core/';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core/';
 
 const useStyles = makeStyles(theme => ({
     modal: {
@@ -17,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const DragonDetail = ({isOpen, closeModal, dragon}) => {
+const DragonDetail = ({ isOpen, closeModal, dragon }) => {
     const classes = useStyles();
 
     const handleClose = () => {
@@ -26,26 +25,26 @@ const DragonDetail = ({isOpen, closeModal, dragon}) => {
 
     return (
         dragon ?
-        <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            className={classes.modal}
-            open={isOpen}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-                timeout: 500,
-            }}
-        >
-            <Fade in={isOpen}>
-                <div className={classes.paper}>
-                    <Typography variant="h1" component="h2">{dragon.name}</Typography>
-                    <Typography variant="h5" component="h5">{dragon.type}</Typography>
-                    <Typography variant="subtitle1" component="h6">{dragon.createdAt}</Typography>                    
-                </div>
-            </Fade>
-        </Modal> : ""
+            <Dialog open={isOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">{dragon.name}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        {dragon.type}
+                    </DialogContentText>
+                    <DialogContentText>
+                        {dragon.createdAt}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    {/* <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button> */}
+                    <Button onClick={handleClose} color="primary">
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
+            : ""
     )
 }
 
