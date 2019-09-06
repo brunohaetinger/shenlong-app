@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core/';
+import { Route } from 'react-router-dom';
 import logo from '../../assets/dragon-ball.png';
 const Database = require('../../dbMock/db.json');
 
@@ -45,6 +46,7 @@ const Login = () => {
 
   return (
     <div>
+      <img src={logo} alt="Logo" />
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="standard-name"
