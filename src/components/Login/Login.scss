@@ -8,10 +8,14 @@
       margin-left: 1;
       margin-right: 1;
       width: 200;
+      label{
+        color: $txtcolor;
+      }
     }
     .button {
-      margin: 1;
+      margin-top: 35px;
       background: $btn-background;
+      color: $txtcolor;
     }
     .input-icon{
       padding-bottom: 10px;

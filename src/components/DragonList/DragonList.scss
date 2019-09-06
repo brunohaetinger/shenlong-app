@@ -1,12 +1,17 @@
 @import "../../assets/variables";
 
-.root{
-    width: 100%;
-    .fab-add{
-        margin: 1;
-        background: $btn-background;
-    }
-    .edit-icon{
-        margin-right: 16px;
-    }
+.fab-add{
+    margin: 1;
+    background: $btn-background;
+}
+.edit-icon{
+    margin-right: 16px;
+}
+
+.list-name{
+    color: $txtcolor;
+}
+
+svg {
+    fill: $txtcolor !important;
 }

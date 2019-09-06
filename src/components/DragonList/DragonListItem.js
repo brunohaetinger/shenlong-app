@@ -2,6 +2,7 @@ import React from 'react';
 import { ListItemText, ListItem, Tooltip } from '@material-ui/core/';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
+import './DragonList.scss'
 
 const DragonListItem = ({ index, style, data, onSelectDragon, onDeleteDragon, onEditDragon }) => {
     const dragon = data[index];
@@ -12,7 +13,7 @@ const DragonListItem = ({ index, style, data, onSelectDragon, onDeleteDragon, on
 
     return (
         <ListItem button style={style} key={index} >
-            <ListItemText primary={dragon.name} onClick={handleItemClick} />
+            <ListItemText className="list-name" primary={dragon.name} onClick={handleItemClick} />
             <Tooltip title="Edit">
                 <EditIcon className="edit-icon" onClick={() => { onEditDragon(dragon) }} />
             </Tooltip>
