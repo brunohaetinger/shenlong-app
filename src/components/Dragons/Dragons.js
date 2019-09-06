@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import DragonList from "../DragonList/DragonList";
-import DragonDetail from "../DragonDetail/DragonDetail";
+import DragonDialog from "../DragonDialog/DragonDialog";
 import { Typography } from '@material-ui/core/';
 import DragonClient from '../../services/DragonClient';
 
 const Dragons = () => {
-  const [isDetailOpen, setDetailOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [dialogAction, setDialogAction] = useState();
   const [selectedDragon, setSelectedDragon] = useState();
   const [dragons, setDragons] = useState([]);
 
@@ -31,13 +32,10 @@ const Dragons = () => {
     });
   }
 
-  const handleIsDetailOpen = (isOpen) => {
-    setDetailOpen(isOpen);
-  }
-
-  const openDetail = (dragon) => {
+  const onOpenDetails = (dragon) => {
     setSelectedDragon(dragon);
-    handleIsDetailOpen(true);
+    setIsDialogOpen(true);
+    setDialogAction('Details');
   }
 
   const onDeleteDragon = (id) => {
@@ -47,14 +45,35 @@ const Dragons = () => {
   }
 
   const onEditDragon = (dragon) => {
-    console.log('Go to Edit page');
+    setSelectedDragon(dragon);
+    setIsDialogOpen(true);
+    setDialogAction('Edit');
+  }
+
+  const onAddDragon = () => {
+    setSelectedDragon({name: '', type: ''});
+    setIsDialogOpen(true);
+    setDialogAction('Add');
+  }
+
+  const handleDialogSave = (dragon) => {
+    setIsDialogOpen(false);
+    if(dialogAction === 'Edit'){
+      DragonClient.updateDragon(dragon.id, dragon).then(resp => {
+        updateDragons();
+      });
+    }else {
+      DragonClient.createDragon(dragon).then(resp => {
+        updateDragons();
+      });
+    }
   }
 
   return (
     <div>
       <Typography variant="h1" component="h2">Dragons</Typography>
-      <DragonList onSelectDragon={openDetail} dragons={dragons} onDeleteDragon={onDeleteDragon} onEditDragon={onEditDragon}></DragonList>
-      <DragonDetail isOpen={isDetailOpen} dragon={selectedDragon} closeModal={() => { handleIsDetailOpen(false) }}></DragonDetail>
+      <DragonList onSelectDragon={onOpenDetails} dragons={dragons} onDeleteDragon={onDeleteDragon} onEditDragon={onEditDragon} onAddDragon={onAddDragon}></DragonList>
+      <DragonDialog isOpen={isDialogOpen} dialogAction={dialogAction} dragon={selectedDragon} closeDialog={() => { setIsDialogOpen(false) }} handleSave={handleDialogSave}></DragonDialog>
     </div>
   );
 }

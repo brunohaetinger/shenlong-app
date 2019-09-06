@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const DragonList = ({dragons, onSelectDragon, onDeleteDragon, onEditDragon}) => {
+const DragonList = ({dragons, onSelectDragon, onDeleteDragon, onEditDragon, onAddDragon}) => {
     const classes = useStyles();
 
     return (
@@ -26,7 +26,7 @@ const DragonList = ({dragons, onSelectDragon, onDeleteDragon, onEditDragon}) => 
                 {({index, style, data}) => <DragonListItem index={index} style={style} data={data} onSelectDragon={onSelectDragon} onDeleteDragon={onDeleteDragon} onEditDragon={onEditDragon}></DragonListItem>}
             </List>
             <Tooltip title="Add">
-                <Fab color="primary" aria-label="add" className={classes.fab}>
+                <Fab color="primary" aria-label="add" className={classes.fab} onClick={onAddDragon}>
                     <AddIcon />
                 </Fab>
             </Tooltip>
