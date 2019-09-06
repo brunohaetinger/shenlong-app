@@ -4,7 +4,7 @@ import { TextField, Button } from '@material-ui/core/';
 import { Route } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import logo from '../../assets/dragon-ball.png';
-const Database = require('../../dbMock/db.json');
+import LoginController from './LoginController';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -34,16 +34,12 @@ const Login = () => {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  const handleLogin = (routeHistory) => { 
-    if(isValidUser()){
-      routeHistory.push('/dragons'); 
-    } else{
-      enqueueSnackbar(`Sorry, user not found`, {variant: 'error'});
+  const handleLogin = (routeHistory) => {
+    if (LoginController.isValidUser(values.username, values.password)) {
+      routeHistory.push('/dragons');
+    } else {
+      enqueueSnackbar(`Sorry, user not found`, { variant: 'error' });
     }
-  }
-
-  const isValidUser = () => { 
-    return Database.users.find(user => user.username === values.username && user.password === values.password) ? true: false;
   }
 
   return (
@@ -70,7 +66,7 @@ const Login = () => {
 
 
         <Route render={({ history }) => (
-          <Button variant="contained" color="primary" className={classes.button} onClick={()=>{ handleLogin(history) }}>
+          <Button variant="contained" color="primary" className={classes.button} onClick={() => { handleLogin(history) }}>
             Login
           </Button>
         )} />
