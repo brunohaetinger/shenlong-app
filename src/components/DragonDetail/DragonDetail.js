@@ -1,29 +1,22 @@
 import React from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core/';
+import { Button, DialogActions, DialogContent, DialogContentText } from '@material-ui/core/';
 
-const DragonDetail = ({ isOpen, closeModal, dragon }) => {
-    const handleClose = () => {
-        closeModal();
-    };
+const DragonDetail = ({ dragon, handleClose }) => {
 
     return (
         dragon ?
-            <Dialog open={isOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">{dragon.name}</DialogTitle>
+            <div>                
                 <DialogContent>
-                    <DialogContentText>
-                        {dragon.type}
-                    </DialogContentText>
-                    <DialogContentText>
-                        {dragon.createdAt}
-                    </DialogContentText>
+                    <DialogContentText>{dragon.name}</DialogContentText>
+                    <DialogContentText>{dragon.type}</DialogContentText>
+                    <DialogContentText>{dragon.createdAt}</DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         Close
                     </Button>
                 </DialogActions>
-            </Dialog>
+            </div>
             : ""
     )
 }
