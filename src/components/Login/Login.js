@@ -1,10 +1,12 @@
 import React from "react";
-import { TextField, Button } from '@material-ui/core/';
+import { TextField, Button, Grid } from '@material-ui/core/';
 import { Route } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import logo from '../../assets/dragon-ball.png';
 import LoginController from './LoginController';
 import './Login.scss'
+import { AssignmentInd, Lock } from '@material-ui/icons';
+
 
 const Login = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -29,24 +31,39 @@ const Login = () => {
     <div>
       <img src={logo} alt="Logo" />
       <form className='container' noValidate autoComplete="off">
-        <TextField
-          id="standard-name"
-          label="Username"
-          className='textField'
-          value={values.name}
-          onChange={handleChange('username')}
-          margin="normal"
-        />
-        <TextField
-          id="standard-password-input"
-          label="Password"
-          className='textField'
-          type="password"
-          autoComplete="current-password"
-          onChange={handleChange('password')}
-          margin="normal"
-        />
-
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="flex-end"
+        >
+          <AssignmentInd className="input-icon" color="disabled"></AssignmentInd>
+          <TextField
+            id="standard-name"
+            label="Username"
+            className='textField'
+            value={values.name}
+            onChange={handleChange('username')}
+            margin="normal"
+          />
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="flex-end"
+        >
+          <Lock className="input-icon" color="disabled"></Lock>
+          <TextField
+            id="standard-password-input"
+            label="Password"
+            className='textField'
+            type="password"
+            autoComplete="current-password"
+            onChange={handleChange('password')}
+            margin="normal"
+          />
+        </Grid>
 
         <Route render={({ history }) => (
           <Button variant="contained" color="primary" className='button' onClick={() => { handleLogin(history) }}>
