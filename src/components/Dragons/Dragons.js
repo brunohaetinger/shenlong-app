@@ -73,7 +73,6 @@ const Dragons = () => {
 
   return (
     <div>
-      <Typography variant="h1" component="h2">Dragons</Typography>
       <DragonList onSelectDragon={onOpenDetails} dragons={dragons} onDeleteDragon={onDeleteDragon} onEditDragon={onEditDragon} onAddDragon={onAddDragon}></DragonList>
       <DragonDialog isOpen={isDialogOpen} dialogAction={dialogAction} dragon={selectedDragon} closeDialog={() => { setIsDialogOpen(false) }} handleSave={handleDialogSave}></DragonDialog>
     </div>
