@@ -1,7 +1,8 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core/';
-import { Route } from "react-router-dom";
+import logo from '../../assets/dragon-ball.png';
+const Database = require('../../dbMock/db.json');
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -30,6 +31,18 @@ const Login = () => {
     setValues({ ...values, [name]: event.target.value });
   };
 
+  const handleLogin = (routeHistory) => { 
+    if(isValidUser()){
+      routeHistory.push('/dragons'); 
+    } else{
+      //ToDo: Usuario e senha não encontrados.
+    }
+  }
+
+  const isValidUser = () => { 
+    return Database.users.find(user => user.username === values.username && user.password === values.password) ? true: false;
+  }
+
   return (
     <div>
       <form className={classes.container} noValidate autoComplete="off">
@@ -47,15 +60,15 @@ const Login = () => {
           className={classes.textField}
           type="password"
           autoComplete="current-password"
+          onChange={handleChange('password')}
           margin="normal"
         />
 
 
         <Route render={({ history }) => (
-          <Button variant="contained" color="primary" className={classes.button} onClick={() => { history.push('/dragons') }}>
+          <Button variant="contained" color="primary" className={classes.button} onClick={()=>{ handleLogin(history) }}>
             Login
           </Button>
-
         )} />
       </form>
     </div>
