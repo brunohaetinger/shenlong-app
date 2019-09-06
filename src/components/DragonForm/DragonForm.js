@@ -6,6 +6,7 @@ const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
         flexWrap: 'wrap',
+        flexDirection: 'column',
     },
     textField: {
         marginLeft: theme.spacing(1),
@@ -14,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const DragonForm = ({ dragon, handleClose, handleSave }) => {
+const DragonForm = ({ dragon, handleClose, handleSave, readOnly }) => {
     const classes = useStyles();
     const [hasSaved, setHasSaved] = React.useState(false);
     const [values, setValues] = React.useState({
@@ -28,8 +29,8 @@ const DragonForm = ({ dragon, handleClose, handleSave }) => {
 
     const onClickSave = () => {
         setHasSaved(true);
-        for(var key in values){
-            if(!values[key]){
+        for (var key in values) {
+            if (!values[key]) {
                 return;
             }
         }
@@ -39,8 +40,9 @@ const DragonForm = ({ dragon, handleClose, handleSave }) => {
     return (
         dragon ?
             <div>
-                <DialogContent>
+                <DialogContent className={classes.container}>
                     <TextField
+                        disabled={readOnly}
                         error={hasSaved && !values.name}
                         id="standard-name"
                         label="Name"
@@ -50,6 +52,7 @@ const DragonForm = ({ dragon, handleClose, handleSave }) => {
                         margin="normal"
                     />
                     <TextField
+                        disabled={readOnly}
                         error={hasSaved && !values.type}
                         id="standard-type"
                         label="Type"
@@ -58,14 +61,18 @@ const DragonForm = ({ dragon, handleClose, handleSave }) => {
                         onChange={handleChange('type')}
                         margin="normal"
                     />
+                    {readOnly && <TextField
+                        disabled
+                        id="standard-disabled"
+                        label="Created At"
+                        defaultValue={dragon.createdAt}
+                        className={classes.textField}
+                        margin="normal"
+                    />}
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Close
-                    </Button>
-                    <Button onClick={onClickSave} color="primary">
-                        Save
-                    </Button>
+                    <Button onClick={handleClose} color="primary">Close</Button>
+                    {!readOnly && <Button onClick={onClickSave} color="primary">Save</Button>}
                 </DialogActions>
             </div>
             : ""
