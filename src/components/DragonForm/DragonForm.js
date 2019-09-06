@@ -1,22 +1,8 @@
 import React from 'react';
 import { Button, DialogActions, DialogContent, TextField } from '@material-ui/core/';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-    },
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: 200,
-    },
-}));
+import './DragonForm.scss';
 
 const DragonForm = ({ dragon, handleClose, handleSave, readOnly }) => {
-    const classes = useStyles();
     const [hasSaved, setHasSaved] = React.useState(false);
     const [values, setValues] = React.useState({
         name: dragon.name,
@@ -40,13 +26,13 @@ const DragonForm = ({ dragon, handleClose, handleSave, readOnly }) => {
     return (
         dragon ?
             <div>
-                <DialogContent className={classes.container}>
+                <DialogContent className="container">
                     <TextField
                         disabled={readOnly}
                         error={hasSaved && !values.name}
                         id="standard-name"
                         label="Name"
-                        className={classes.textField}
+                        className="textField"
                         value={values.name}
                         onChange={handleChange('name')}
                         margin="normal"
@@ -56,7 +42,7 @@ const DragonForm = ({ dragon, handleClose, handleSave, readOnly }) => {
                         error={hasSaved && !values.type}
                         id="standard-type"
                         label="Type"
-                        className={classes.textField}
+                        className="textField"
                         value={values.type}
                         onChange={handleChange('type')}
                         margin="normal"
@@ -66,7 +52,7 @@ const DragonForm = ({ dragon, handleClose, handleSave, readOnly }) => {
                         id="standard-disabled"
                         label="Created At"
                         defaultValue={dragon.createdAt}
-                        className={classes.textField}
+                        className="textField"
                         margin="normal"
                     />}
                 </DialogContent>

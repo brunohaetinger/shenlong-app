@@ -14,7 +14,7 @@ const DragonListItem = ({ index, style, data, onSelectDragon, onDeleteDragon, on
         <ListItem button style={style} key={index} >
             <ListItemText primary={dragon.name} onClick={handleItemClick} />
             <Tooltip title="Edit">
-                <EditIcon onClick={() => { onEditDragon(dragon) }} />
+                <EditIcon className="edit-icon" onClick={() => { onEditDragon(dragon) }} />
             </Tooltip>
             <Tooltip title="Delete">
                 <DeleteForeverIcon onClick={() => { onDeleteDragon(dragon.id) }} />

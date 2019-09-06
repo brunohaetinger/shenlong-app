@@ -1,30 +1,13 @@
 import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core/';
 import { Route } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import logo from '../../assets/dragon-ball.png';
 import LoginController from './LoginController';
-
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'column'
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-  button: {
-    margin: theme.spacing(1),
-  },
-}));
+import './Login.scss'
 
 const Login = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const classes = useStyles();
   const [values, setValues] = React.useState({
     username: '',
     password: '',
@@ -45,11 +28,11 @@ const Login = () => {
   return (
     <div>
       <img src={logo} alt="Logo" />
-      <form className={classes.container} noValidate autoComplete="off">
+      <form className='container' noValidate autoComplete="off">
         <TextField
           id="standard-name"
           label="Username"
-          className={classes.textField}
+          className='textField'
           value={values.name}
           onChange={handleChange('username')}
           margin="normal"
@@ -57,7 +40,7 @@ const Login = () => {
         <TextField
           id="standard-password-input"
           label="Password"
-          className={classes.textField}
+          className='textField'
           type="password"
           autoComplete="current-password"
           onChange={handleChange('password')}
@@ -66,7 +49,7 @@ const Login = () => {
 
 
         <Route render={({ history }) => (
-          <Button variant="contained" color="primary" className={classes.button} onClick={() => { handleLogin(history) }}>
+          <Button variant="contained" color="primary" className='button' onClick={() => { handleLogin(history) }}>
             Login
           </Button>
         )} />

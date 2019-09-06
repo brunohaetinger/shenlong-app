@@ -1,30 +1,19 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Fab, Tooltip } from '@material-ui/core/';
 import { FixedSizeList as List} from 'react-window';
 import AddIcon from '@material-ui/icons/Add';
 import DragonListItem from './DragonListItem';
+import './DragonList.scss'
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-        backgroundColor: theme.palette.background.paper,
-    },
-    fab: {
-        margin: theme.spacing(1),
-    },
-}));
 
 const DragonList = ({dragons, onSelectDragon, onDeleteDragon, onEditDragon, onAddDragon}) => {
-    const classes = useStyles();
-
     return (
-        <div className={classes.root}>
+        <div className='root'>
             <List itemData={dragons} height={400} width={360} itemSize={46} itemCount={dragons.length}>
                 {({index, style, data}) => <DragonListItem index={index} style={style} data={data} onSelectDragon={onSelectDragon} onDeleteDragon={onDeleteDragon} onEditDragon={onEditDragon}></DragonListItem>}
             </List>
             <Tooltip title="Add">
-                <Fab color="primary" aria-label="add" className={classes.fab} onClick={onAddDragon}>
+                <Fab color="primary" aria-label="add" className='fab' onClick={onAddDragon}>
                     <AddIcon />
                 </Fab>
             </Tooltip>

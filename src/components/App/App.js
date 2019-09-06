@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import AppRouter from '../AppRouter/AppRouter';
 import { SnackbarProvider } from 'notistack';
 import 'typeface-roboto';
