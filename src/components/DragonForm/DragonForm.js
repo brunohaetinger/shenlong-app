@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 const DragonForm = ({ dragon, handleClose, handleSave }) => {
     const classes = useStyles();
+    const [hasSaved, setHasSaved] = React.useState(false);
     const [values, setValues] = React.useState({
         name: dragon.name,
         type: dragon.type,
@@ -24,9 +25,15 @@ const DragonForm = ({ dragon, handleClose, handleSave }) => {
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };
-    
+
     const onClickSave = () => {
-        handleSave({...dragon, ...values})
+        setHasSaved(true);
+        for(var key in values){
+            if(!values[key]){
+                return;
+            }
+        }
+        handleSave({ ...dragon, ...values })
     }
 
     return (
@@ -34,6 +41,7 @@ const DragonForm = ({ dragon, handleClose, handleSave }) => {
             <div>
                 <DialogContent>
                     <TextField
+                        error={hasSaved && !values.name}
                         id="standard-name"
                         label="Name"
                         className={classes.textField}
@@ -42,7 +50,8 @@ const DragonForm = ({ dragon, handleClose, handleSave }) => {
                         margin="normal"
                     />
                     <TextField
-                        id="standard-name"
+                        error={hasSaved && !values.type}
+                        id="standard-type"
                         label="Type"
                         className={classes.textField}
                         value={values.type}
