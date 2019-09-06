@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListItemText, ListItem } from '@material-ui/core/';
+import { ListItemText, ListItem, Tooltip } from '@material-ui/core/';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
 
@@ -12,9 +12,13 @@ const DragonListItem = ({ index, style, data, onSelectDragon, onDeleteDragon, on
 
     return (
         <ListItem button style={style} key={index} >
-            <ListItemText primary={dragon.name} onClick={handleItemClick}/>
-            <EditIcon onClick={() => { onEditDragon(dragon) }} />
-            <DeleteForeverIcon onClick={() => { onDeleteDragon(dragon.id) }} />
+            <ListItemText primary={dragon.name} onClick={handleItemClick} />
+            <Tooltip title="Edit">
+                <EditIcon onClick={() => { onEditDragon(dragon) }} />
+            </Tooltip>
+            <Tooltip title="Delete">
+                <DeleteForeverIcon onClick={() => { onDeleteDragon(dragon.id) }} />
+            </Tooltip>
         </ListItem>
     );
 }
