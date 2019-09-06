@@ -3,8 +3,10 @@ import DragonList from "../DragonList/DragonList";
 import DragonDialog from "../DragonDialog/DragonDialog";
 import { Typography } from '@material-ui/core/';
 import DragonClient from '../../services/DragonClient';
+import { useSnackbar } from 'notistack';
 
 const Dragons = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogAction, setDialogAction] = useState();
   const [selectedDragon, setSelectedDragon] = useState();
@@ -17,8 +19,8 @@ const Dragons = () => {
   const updateDragons = () => {
     DragonClient.getDragons()
       .then(resp => resp.json())
-      .then(dragons => setDragons(getOrderedList(dragons)));
-    //ToDo: catch and show user message.
+      .then(dragons => setDragons(getOrderedList(dragons)))
+      .catch(ex => { enqueueSnackbar(`Sorry, couldn't get dragon's list`, { variant: 'error' })});
   }
 
   const getOrderedList = (dragons) => {
