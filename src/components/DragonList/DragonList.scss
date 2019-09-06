@@ -1,7 +1,10 @@
+@import "../../assets/variables";
+
 .root{
     width: 100%;
     .fab{
         margin: 1;
+        background: $btn-background;
     }
     .edit-icon{
         margin-right: 16px;

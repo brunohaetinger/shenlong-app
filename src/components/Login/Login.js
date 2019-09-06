@@ -66,7 +66,7 @@ const Login = () => {
         </Grid>
 
         <Route render={({ history }) => (
-          <Button variant="contained" color="primary" className='button' onClick={() => { handleLogin(history) }}>
+          <Button variant="contained" className='button' onClick={() => { handleLogin(history) }}>
             Login
           </Button>
         )} />
