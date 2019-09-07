@@ -1,6 +1,5 @@
 import React from 'react';
-import { Fab, Tooltip, Grid } from '@material-ui/core/';
-import { FixedSizeList as List } from 'react-window';
+import { Fab, Tooltip, Grid, List  } from '@material-ui/core/';
 import AddIcon from '@material-ui/icons/Add';
 import DragonListItem from './DragonListItem';
 import './DragonList.scss'
@@ -15,8 +14,8 @@ const DragonList = ({ dragons, onSelectDragon, onDeleteDragon, onEditDragon, onA
             justify="center"
             alignItems="center"
         >
-            <List itemData={dragons} height={400} width={360} itemSize={46} itemCount={dragons.length}>
-                {({ index, style, data }) => <DragonListItem index={index} style={style} data={data} onSelectDragon={onSelectDragon} onDeleteDragon={onDeleteDragon} onEditDragon={onEditDragon}></DragonListItem>}
+            <List className="dragon-list">
+                {dragons.map((dragon, index)=> <DragonListItem key={index} dragon={dragon} onSelectDragon={onSelectDragon} onDeleteDragon={onDeleteDragon} onEditDragon={onEditDragon}></DragonListItem>)}
             </List>
             <Tooltip title="Add">
                 <Fab aria-label="add" className='fab-add' onClick={onAddDragon}>
