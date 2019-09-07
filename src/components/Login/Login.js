@@ -28,7 +28,7 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className="login-container">
       <img src={logo} alt="Logo" />
       <form className='container' noValidate autoComplete="off">
         <Grid
