@@ -3,7 +3,7 @@ import { TextField, Button, Grid } from '@material-ui/core/';
 import { Route } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import logo from '../../assets/dragon-ball.png';
-import LoginController from './LoginController';
+import LoginAuth from '../../services/LoginAuth';
 import './Login.scss'
 import { AssignmentInd, Lock } from '@material-ui/icons';
 
@@ -15,12 +15,16 @@ const Login = () => {
     password: '',
   });
 
+  React.useEffect(()=>{
+    LoginAuth.resetLoggedUser();
+  }, []);
+
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
 
   const handleLogin = (routeHistory) => {
-    if (LoginController.isValidUser(values.username, values.password)) {
+    if (LoginAuth.isValidUser(values.username, values.password)) {
       routeHistory.push('/dragons');
     } else {
       enqueueSnackbar(`Sorry, user not found`, { variant: 'error' });
