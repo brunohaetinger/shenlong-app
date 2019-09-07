@@ -4,6 +4,7 @@ import DragonDialog from "../DragonDialog/DragonDialog";
 import { Typography } from '@material-ui/core/';
 import DragonClient from '../../services/DragonClient';
 import { useSnackbar } from 'notistack';
+import Enums from "../../enums/Enums";
 
 const Dragons = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -37,7 +38,7 @@ const Dragons = () => {
   const onOpenDetails = (dragon) => {
     setSelectedDragon(dragon);
     setIsDialogOpen(true);
-    setDialogAction('Details');
+    setDialogAction(Enums.dialogActions.details);
   }
 
   const onDeleteDragon = (id) => {
@@ -49,18 +50,18 @@ const Dragons = () => {
   const onEditDragon = (dragon) => {
     setSelectedDragon(dragon);
     setIsDialogOpen(true);
-    setDialogAction('Edit');
+    setDialogAction(Enums.dialogActions.edit);
   }
 
   const onAddDragon = () => {
     setSelectedDragon({name: '', type: ''});
     setIsDialogOpen(true);
-    setDialogAction('Add');
+    setDialogAction(Enums.dialogActions.add);
   }
 
   const handleDialogSave = (dragon) => {
     setIsDialogOpen(false);
-    if(dialogAction === 'Edit'){
+    if(dialogAction === Enums.dialogActions.edit){
       DragonClient.updateDragon(dragon.id, dragon).then(resp => {
         updateDragons();
       });
