@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import DragonList from "../DragonList/DragonList";
 import DragonDialog from "../DragonDialog/DragonDialog";
-import { Typography } from '@material-ui/core/';
 import DragonClient from '../../services/DragonClient';
+import DragonAppBar from "../DragonAppBar/DragonAppBar";
 import { useSnackbar } from 'notistack';
 import Enums from "../../enums/Enums";
 
@@ -74,6 +74,7 @@ const Dragons = () => {
 
   return (
     <div>
+      <DragonAppBar></DragonAppBar>
       <DragonList onSelectDragon={onOpenDetails} dragons={dragons} onDeleteDragon={onDeleteDragon} onEditDragon={onEditDragon} onAddDragon={onAddDragon}></DragonList>
       <DragonDialog isOpen={isDialogOpen} dialogAction={dialogAction} dragon={selectedDragon} closeDialog={() => { setIsDialogOpen(false) }} handleSave={handleDialogSave}></DragonDialog>
     </div>

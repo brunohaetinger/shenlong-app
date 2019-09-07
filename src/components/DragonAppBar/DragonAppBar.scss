@@ -1,0 +1,8 @@
+@import "../../assets/variables";
+
+.dragon-bar {
+    background-color: transparent !important;
+    .bar-elem {
+        color: $txtcolor;
+    }
+}
