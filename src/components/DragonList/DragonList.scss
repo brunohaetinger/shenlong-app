@@ -1,9 +1,37 @@
 @import "../../assets/variables";
 
+.dragon-list::-webkit-scrollbar {
+	width: 4px;
+	background-color: $blue-grad;
+}
+.dragon-lis::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: lightgray;
+    border-radius: 10px;
+}
+
+.dragon-list::-webkit-scrollbar-thumb {
+    background-color: $txtcolor;
+    border-radius: 10px;
+}
+
 .grid-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    .dragon-list{
+        overflow: auto;
+        width: 100vw;
+        height: 95vh;
+        max-width: 700px;
+    }
+
     .fab-add{
         margin: 1;
         background: darkorange;
+        position: absolute;
+        bottom: 1em;
     }
     .edit-icon{
         margin-right: 16px;
