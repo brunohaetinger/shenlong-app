@@ -9,6 +9,7 @@ import './DragonList.scss'
 const DragonList = ({ dragons, onSelectDragon, onDeleteDragon, onEditDragon, onAddDragon }) => {
     return (
         <Grid
+            className="grid-container"
             container
             direction="column"
             justify="center"

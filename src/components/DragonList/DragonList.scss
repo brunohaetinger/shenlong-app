@@ -1,17 +1,19 @@
 @import "../../assets/variables";
 
-.fab-add{
-    margin: 1;
-    background: $orange-grad;
-}
-.edit-icon{
-    margin-right: 16px;
-}
-
-.list-name{
-    color: $txtcolor;
-}
-
-svg {
-    fill: $txtcolor !important;
+.grid-container{
+    .fab-add{
+        margin: 1;
+        background: $orange-grad;
+    }
+    .edit-icon{
+        margin-right: 16px;
+    }
+    
+    .list-name{
+        color: $txtcolor;
+    }
+    
+    svg {
+        fill: $txtcolor !important;
+    }
 }

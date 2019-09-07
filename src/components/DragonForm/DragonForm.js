@@ -26,7 +26,7 @@ const DragonForm = ({ dragon, handleClose, handleSave, readOnly }) => {
     return (
         dragon ?
             <div>
-                <DialogContent className="container">
+                <DialogContent className="form-container">
                     <TextField
                         disabled={readOnly}
                         error={hasSaved && !values.name}
